@@ -1,4 +1,4 @@
-import { GetServerSideProps } from "next";
+import { GetStaticProps, GetServerSideProps } from "next";
 import Head from "next/head";
 import { SubscribeButton } from "../components/subscribeButton";
 import { stripe } from "../services/stripe";
@@ -32,7 +32,13 @@ export default function Home({ product }: HomeProps) {
     </>
   );
 }
-export const getServerSideProps: GetServerSideProps = async () => {
+/**
+ * 
+ * SSG - STATIC SITE GENERATION
+ * Apenas usar quando a página pode ser estática
+ * 
+ */
+export const getStaticProps: GetStaticProps = async () => {
   const price = await stripe.prices.retrieve("price_1JyiqgCbRDzwsN15z13A0Y6z");
   const product = {
     priceID: price.id,
@@ -45,5 +51,23 @@ export const getServerSideProps: GetServerSideProps = async () => {
     props: {
       product,
     },
+    revalidate: 60 * 60 * 24, //24hr
   };
 };
+
+// SSR - SERVER SIDE RENDERING
+// export const getServerSideProps: GetServerSideProps = async () => {
+//   const price = await stripe.prices.retrieve("price_1JyiqgCbRDzwsN15z13A0Y6z");
+//   const product = {
+//     priceID: price.id,
+//     amount: new Intl.NumberFormat("en-US", {
+//       style: "currency",
+//       currency: "USD",
+//     }).format(price.unit_amount / 100),
+//   };
+//   return {
+//     props: {
+//       product,
+//     },
+//   };
+// };
