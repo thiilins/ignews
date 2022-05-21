@@ -1,7 +1,7 @@
 import { GetStaticProps, GetServerSideProps } from "next";
 import Head from "next/head";
-import { SubscribeButton } from "../components/subscribeButton";
-import { stripe } from "../services/stripe";
+import { SubscribeButton } from "components/subscribeButton";
+import { stripe } from "services/stripe";
 import styles from "./home.module.scss";
 interface HomeProps {
   product: {
@@ -33,10 +33,10 @@ export default function Home({ product }: HomeProps) {
   );
 }
 /**
- * 
+ *
  * SSG - STATIC SITE GENERATION
  * Apenas usar quando a página pode ser estática
- * 
+ *
  */
 export const getStaticProps: GetStaticProps = async () => {
   const price = await stripe.prices.retrieve("price_1JyiqgCbRDzwsN15z13A0Y6z");
