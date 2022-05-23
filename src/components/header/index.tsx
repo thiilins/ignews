@@ -1,7 +1,5 @@
 /* eslint-disable @next/next/no-html-link-for-pages */
 import { SignInButton } from 'components/signInButton'
-import Link from 'next/link'
-
 import * as S from './styles'
 export function Header() {
   return (
