@@ -1,5 +1,5 @@
 import Head from 'next/head'
-import * as S from '../_style/mainPosts'
+import * as S from '../../styles/pages/mainPosts'
 export default function Home() {
   return (
     <>

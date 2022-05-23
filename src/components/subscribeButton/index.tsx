@@ -6,7 +6,7 @@ interface SubscribeButtonProps {
   priceID: string
 }
 
-export function SubscribeButton({ priceID }: SubscribeButtonProps) {
+export function SubscribeButton() {
   const session = useSession()
   async function handleSubscribe() {
     if (!session.data) {

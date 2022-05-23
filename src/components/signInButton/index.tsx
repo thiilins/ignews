@@ -8,7 +8,7 @@ export function SignInButton() {
   return session.status === 'authenticated' ? (
     <S.WrapperSignInButtonContainer type="button">
       <FaGithub color="#04d361" />
-      {session.data.user.name}
+      {session.data?.user?.name}
       <FiX color="#737380" className="closeIcon" onClick={() => signOut()} />
     </S.WrapperSignInButtonContainer>
   ) : (
