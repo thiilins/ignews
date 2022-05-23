@@ -1,3 +1,4 @@
+import Link from 'next/link'
 import styled, { css } from 'styled-components'
 
 export const WrapperMainPostsPage = styled.main`
@@ -22,17 +23,18 @@ export const WrapperPostList = styled.div`
     margin: 5rem auto 0;
   `}
 `
-export const WrapperPostCard = styled.div`
+export const WrapperPostCard = styled.a`
   ${({ theme }) => css`
     z-index: ${theme.layers.alwaysOnTop};
     display: flex;
     flex-direction: column;
     gap: 1rem;
+    cursor: pointer;
     & time {
       color: ${theme.colors.gray300};
       font-size: 0.8rem;
     }
-    a {
+    h2 {
       font-size: 1.5rem;
       white-space: nowrap;
       font-weight: 900;
@@ -40,7 +42,7 @@ export const WrapperPostCard = styled.div`
     p {
       font-size: 0.9rem;
     }
-    & + div {
+    & + a {
       margin-top: 2rem;
       padding-top: 2rem;
       border-top: 1px solid ${theme.colors.gray700};

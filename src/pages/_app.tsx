@@ -4,16 +4,19 @@ import { SessionProvider } from 'next-auth/react'
 import { GlobalStyle } from 'styles/global'
 import dark from 'styles/themes/dark'
 import { ThemeProvider } from 'styled-components'
-function MyApp({ Component, pageProps }: AppProps) {
+
+function App({ Component, pageProps }) {
   return (
-    <ThemeProvider theme={dark}>
-      <GlobalStyle />
-      <SessionProvider session={pageProps.session}>
-        <Header />
-        <Component {...pageProps} />
-      </SessionProvider>
-    </ThemeProvider>
+    <>
+      <ThemeProvider theme={dark}>
+        <SessionProvider session={pageProps.session}>
+          <GlobalStyle />
+          <Header />
+          <Component {...pageProps} />
+        </SessionProvider>
+      </ThemeProvider>
+    </>
   )
 }
 
-export default MyApp
+export default App

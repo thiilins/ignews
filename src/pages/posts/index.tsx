@@ -11,7 +11,7 @@ export default function Home() {
         <S.WrapperPostList>
           <S.WrapperPostCard>
             <time>12 de março de 2021</time>
-            <a>Creating a Monorepo with Lerna & Yarn Workspaces</a>
+            <h2>Creating a Monorepo with Lerna & Yarn Workspaces</h2>
             <p>
               In this guide, you will learn how to create a Monorepo to manage
               multiple packages with a shared build, test, and release process.
@@ -19,7 +19,7 @@ export default function Home() {
           </S.WrapperPostCard>
           <S.WrapperPostCard>
             <time>12 de março de 2021</time>
-            <a>Creating a Monorepo with Lerna & Yarn Workspaces</a>
+            <h2>Creating a Monorepo with Lerna & Yarn Workspaces</h2>
             <p>
               In this guide, you will learn how to create a Monorepo to manage
               multiple packages with a shared build, test, and release process.
@@ -27,7 +27,7 @@ export default function Home() {
           </S.WrapperPostCard>
           <S.WrapperPostCard>
             <time>12 de março de 2021</time>
-            <a>Creating a Monorepo with Lerna & Yarn Workspaces</a>
+            <h2>Creating a Monorepo with Lerna & Yarn Workspaces</h2>
             <p>
               In this guide, you will learn how to create a Monorepo to manage
               multiple packages with a shared build, test, and release process.
@@ -35,7 +35,7 @@ export default function Home() {
           </S.WrapperPostCard>
           <S.WrapperPostCard>
             <time>12 de março de 2021</time>
-            <a>Creating a Monorepo with Lerna & Yarn Workspaces</a>
+            <h2>Creating a Monorepo with Lerna & Yarn Workspaces</h2>
             <p>
               In this guide, you will learn how to create a Monorepo to manage
               multiple packages with a shared build, test, and release process.
@@ -43,7 +43,7 @@ export default function Home() {
           </S.WrapperPostCard>
           <S.WrapperPostCard>
             <time>12 de março de 2021</time>
-            <a>Creating a Monorepo with Lerna & Yarn Workspaces</a>
+            <h2>Creating a Monorepo with Lerna & Yarn Workspaces</h2>
             <p>
               In this guide, you will learn how to create a Monorepo to manage
               multiple packages with a shared build, test, and release process.
