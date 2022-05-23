@@ -1,4 +1,3 @@
-import Link from 'next/link'
 import styled, { css } from 'styled-components'
 
 export const WrapperHeader = styled.header`
