@@ -2,7 +2,7 @@ import { GetStaticProps, GetServerSideProps } from 'next'
 import Head from 'next/head'
 import { SubscribeButton } from 'components/subscribeButton'
 import { stripe } from 'services/stripe'
-import styles from './home.module.scss'
+import * as S from './_style/home'
 interface HomeProps {
   product: {
     priceId: string
@@ -13,10 +13,10 @@ export default function Home({ product }: HomeProps) {
   return (
     <>
       <Head>
-        <title>Home | ig.news </title>
+        <title>Home | IGNEWS </title>
       </Head>
-      <main className={styles.contentContainer}>
-        <section className={styles.hero}>
+      <S.WrappedHome>
+        <section className="hero">
           <span> 👏 Hey, welcome!</span>
           <h1>
             News about the <span>React</span> world.
@@ -28,7 +28,7 @@ export default function Home({ product }: HomeProps) {
           <SubscribeButton priceID={product.priceId} />
         </section>
         <img src="/images/avatar.svg" alt="Girl Coding " />
-      </main>
+      </S.WrappedHome>
     </>
   )
 }

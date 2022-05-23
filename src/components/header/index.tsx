@@ -1,18 +1,21 @@
+/* eslint-disable @next/next/no-html-link-for-pages */
 import { SignInButton } from 'components/signInButton'
 import Link from 'next/link'
 
-import styles from './styles.module.scss'
+import * as S from './styles'
 export function Header() {
   return (
-    <header className={styles.headerContainer}>
-      <div className={styles.headerContent}>
+    <S.WrapperHeader>
+      <div className="headerContent">
         <img src="/images/logo.svg" alt="ig.news" />
         <nav>
-          <Link href="/">Home</Link>
-          <a href="#">Posts</a>
+          <a className="active" href="/">
+            Home
+          </a>
+          <a href="/posts">Posts</a>
         </nav>
         <SignInButton />
       </div>
-    </header>
+    </S.WrapperHeader>
   )
 }

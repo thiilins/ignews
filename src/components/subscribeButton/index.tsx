@@ -1,4 +1,4 @@
-import styles from './styles.module.scss'
+import * as S from './styles'
 import { signIn, useSession } from 'next-auth/react'
 import { api } from 'services/api'
 import { getStripeJs } from 'services/stripe-js'
@@ -24,12 +24,8 @@ export function SubscribeButton({ priceID }: SubscribeButtonProps) {
     }
   }
   return (
-    <button
-      type="button"
-      className={styles.subscribeButton}
-      onClick={handleSubscribe}
-    >
+    <S.WrapperSubscribeButton type="button" onClick={handleSubscribe}>
       Subscribe Now
-    </button>
+    </S.WrapperSubscribeButton>
   )
 }
