@@ -1,7 +1,7 @@
-import { SignInButton } from "components/signInButton";
-import Link from "next/link";
+import { SignInButton } from 'components/signInButton'
+import Link from 'next/link'
 
-import styles from "./styles.module.scss";
+import styles from './styles.module.scss'
 export function Header() {
   return (
     <header className={styles.headerContainer}>
@@ -14,5 +14,5 @@ export function Header() {
         <SignInButton />
       </div>
     </header>
-  );
+  )
 }

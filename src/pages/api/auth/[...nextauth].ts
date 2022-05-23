@@ -1,7 +1,7 @@
-import NextAuth from "next-auth";
-import GithubProvider from "next-auth/providers/github";
-import { fauna } from "services/fauna";
-import { query as q } from "faunadb";
+import NextAuth from 'next-auth'
+import GithubProvider from 'next-auth/providers/github'
+import { fauna } from 'services/fauna'
+import { query as q } from 'faunadb'
 export default NextAuth({
   providers: [
     GithubProvider({
@@ -9,14 +9,14 @@ export default NextAuth({
       clientSecret: process.env.GITHUB_CLIENT_SECRET,
       authorization: {
         params: {
-          scope: "read:user",
-        },
-      },
-    }),
+          scope: 'read:user'
+        }
+      }
+    })
   ],
   callbacks: {
     async signIn({ user }) {
-      const { email } = user;
+      const { email } = user
       try {
         await fauna.query(
           //SE
@@ -26,20 +26,20 @@ export default NextAuth({
               //EXISTE
               q.Exists(
                 //USUARIO 'WHERE' INDEX - EMAIL
-                q.Match(q.Index("user_by_email"), q.Casefold(user.email))
+                q.Match(q.Index('user_by_email'), q.Casefold(user.email))
               )
             ),
             // CRIE UM NOVO USUARIO COM O EMAIL
-            q.Create(q.Collection("users"), { data: { email } }),
+            q.Create(q.Collection('users'), { data: { email } }),
             //SE EXISTIR BUSCAR AS INFORMAÇÕES
-            q.Get(q.Match(q.Index("user_by_email"), q.Casefold(user.email)))
+            q.Get(q.Match(q.Index('user_by_email'), q.Casefold(user.email)))
           )
-        );
-        return true;
+        )
+        return true
       } catch (err) {
-        console.log(err);
-        return false;
+        console.log(err)
+        return false
       }
-    },
-  },
-});
+    }
+  }
+})
