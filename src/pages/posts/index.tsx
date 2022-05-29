@@ -1,6 +1,22 @@
 import Head from 'next/head'
 import * as S from '../../styles/pages/mainPosts'
-export default function Home() {
+import { getPrismicClient } from 'services/prismic'
+import dateFormat from 'utils/dateFormat'
+type PostMainProps = {
+  posts: [
+    {
+      id: string
+      uid: string
+      first_publication_date: string
+      data: {
+        title: string
+        subtitle: string
+      }
+    }
+  ]
+}
+export default function Posts({ posts }: PostMainProps) {
+  const { formatDate, today } = dateFormat()
   return (
     <>
       <Head>
@@ -9,48 +25,28 @@ export default function Home() {
       <S.WrapperMainPostsPage>
         <h1>Posts</h1>
         <S.WrapperPostList>
-          <S.WrapperPostCard>
-            <time>12 de março de 2021</time>
-            <h2>Creating a Monorepo with Lerna & Yarn Workspaces</h2>
-            <p>
-              In this guide, you will learn how to create a Monorepo to manage
-              multiple packages with a shared build, test, and release process.
-            </p>
-          </S.WrapperPostCard>
-          <S.WrapperPostCard>
-            <time>12 de março de 2021</time>
-            <h2>Creating a Monorepo with Lerna & Yarn Workspaces</h2>
-            <p>
-              In this guide, you will learn how to create a Monorepo to manage
-              multiple packages with a shared build, test, and release process.
-            </p>
-          </S.WrapperPostCard>
-          <S.WrapperPostCard>
-            <time>12 de março de 2021</time>
-            <h2>Creating a Monorepo with Lerna & Yarn Workspaces</h2>
-            <p>
-              In this guide, you will learn how to create a Monorepo to manage
-              multiple packages with a shared build, test, and release process.
-            </p>
-          </S.WrapperPostCard>
-          <S.WrapperPostCard>
-            <time>12 de março de 2021</time>
-            <h2>Creating a Monorepo with Lerna & Yarn Workspaces</h2>
-            <p>
-              In this guide, you will learn how to create a Monorepo to manage
-              multiple packages with a shared build, test, and release process.
-            </p>
-          </S.WrapperPostCard>
-          <S.WrapperPostCard>
-            <time>12 de março de 2021</time>
-            <h2>Creating a Monorepo with Lerna & Yarn Workspaces</h2>
-            <p>
-              In this guide, you will learn how to create a Monorepo to manage
-              multiple packages with a shared build, test, and release process.
-            </p>
-          </S.WrapperPostCard>
+          {posts.map(post => {
+            return (
+              <S.WrapperPostCard key={post.id} href={`/posts/${post.uid}`}>
+                <time>{formatDate(post.first_publication_date)}</time>
+                <h2>{post.data.title}</h2>
+                <p>{post.data.subtitle}</p>
+              </S.WrapperPostCard>
+            )
+          })}
         </S.WrapperPostList>
       </S.WrapperMainPostsPage>
     </>
   )
+}
+
+export async function getStaticProps() {
+  const client = getPrismicClient()
+  const posts = await client.getAllByType('post', {
+    fetch: ['posts.title', 'posts.subtitle'],
+    pageSize: 100
+  })
+  return {
+    props: { posts } // Will be passed to the page component as props
+  }
 }

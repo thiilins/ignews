@@ -3,11 +3,13 @@ import styled, { css } from 'styled-components'
 
 export const WrapperMainPostsPage = styled.main`
   ${({ theme }) => css`
-    z-index: 1;
     max-width: 1120px;
     margin: 0 auto;
     padding: 0 2rem;
     h1 {
+      position: absolute;
+      top: 1rem;
+      z-index: -1;
       padding: 2rem 0 0 1rem;
       margin-bottom: -18rem;
       font-size: 20rem;
@@ -38,6 +40,9 @@ export const WrapperPostCard = styled.a`
       font-size: 1.5rem;
       white-space: nowrap;
       font-weight: 900;
+      &:hover {
+        color: ${theme.colors.yellow500};
+      }
     }
     p {
       font-size: 0.9rem;
