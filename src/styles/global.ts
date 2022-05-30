@@ -26,7 +26,6 @@ ${({ theme }) => css`
     background: ${theme.colors.gray900};
     color: ${theme.colors.white};
   }
-
   body,
   input,
   textarea,

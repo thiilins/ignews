@@ -1,6 +1,6 @@
 import styled, { css } from 'styled-components'
 
-export const WrappedHome = styled.main`
+export const WrapperHome = styled.main`
   ${({ theme }) => css`
     max-width: 1120px;
     margin: 0 auto;

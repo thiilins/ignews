@@ -8,7 +8,8 @@ const dark = {
     gray900: '#121214',
     cyan500: '#61bafb',
     yellow500: '#EBA417',
-    green500: '#04D361'
+    green500: '#04D361',
+    black: '#000'
   },
   font: {
     weight: {

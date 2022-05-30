@@ -15,7 +15,7 @@ export default function Home({ product }: HomeProps) {
       <Head>
         <title>Home | IGNEWS </title>
       </Head>
-      <S.WrappedHome>
+      <S.WrapperHome>
         <section className="hero">
           <span> 👏 Hey, welcome!</span>
           <h1>
@@ -28,7 +28,7 @@ export default function Home({ product }: HomeProps) {
           <SubscribeButton />
         </section>
         <img src="/images/avatar.svg" alt="Girl Coding " />
-      </S.WrappedHome>
+      </S.WrapperHome>
     </>
   )
 }
