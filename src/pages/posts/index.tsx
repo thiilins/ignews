@@ -2,20 +2,18 @@ import Head from 'next/head'
 import * as S from '../../styles/pages/mainPosts'
 import { getPrismicClient } from 'services/prismic'
 import dateFormat from 'utils/dateFormat'
-type PostMainProps = {
+import * as format from '@prismicio/helpers'
+type MainPostsProps = {
   posts: [
     {
-      id: string
-      uid: string
-      first_publication_date: string
-      data: {
-        title: string
-        subtitle: string
-      }
+      slug: string
+      title: string
+      subtitle: string
+      updatedAt: string
     }
   ]
 }
-export default function Posts({ posts }: PostMainProps) {
+export default function Posts({ posts }: MainPostsProps) {
   const { formatDate, today } = dateFormat()
   return (
     <>
@@ -27,10 +25,10 @@ export default function Posts({ posts }: PostMainProps) {
         <S.WrapperPostList>
           {posts.map(post => {
             return (
-              <S.WrapperPostCard key={post.id} href={`/posts/${post.uid}`}>
-                <time>{formatDate(post.first_publication_date)}</time>
-                <h2>{post.data.title}</h2>
-                <p>{post.data.subtitle}</p>
+              <S.WrapperPostCard key={post.slug} href={`/posts/${post.slug}`}>
+                <time>{post.updatedAt}</time>
+                <h2>{post.title}</h2>
+                <p>{post.subtitle}</p>
               </S.WrapperPostCard>
             )
           })}
@@ -42,9 +40,24 @@ export default function Posts({ posts }: PostMainProps) {
 
 export async function getStaticProps() {
   const client = getPrismicClient()
-  const posts = await client.getAllByType('post', {
+  const response = await client.getAllByType('post', {
     fetch: ['posts.title', 'posts.subtitle'],
     pageSize: 100
+  })
+  const posts = response.map(post => {
+    return {
+      slug: post.uid,
+      title: post.data.title,
+      subtitle: post.data.subtitle,
+      updatedAt: new Date(post.last_publication_date).toLocaleDateString(
+        'pt-br',
+        {
+          day: '2-digit',
+          month: 'long',
+          year: 'numeric'
+        }
+      )
+    }
   })
   return {
     props: { posts } // Will be passed to the page component as props

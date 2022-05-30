@@ -1,6 +1,6 @@
 import * as prismic from '@prismicio/client'
 
-export const repositoryName = 'td-ignews'
+export const repositoryName = process.env.PRISMIC_REPOSITORY_NAME
 
 export function getPrismicClient(req?: unknown) {
   const client = prismic.createClient(repositoryName, {
